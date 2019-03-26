@@ -43,7 +43,7 @@ public class Changer extends JFrame
         super("Currency Converter 2018");
         JPanel p = new JPanel();
         
-        p.setLayout(null);
+        p.setLayout(null); //This allows manual placement of each element
         getContentPane().add(p);
         
         ONE.setBounds(220, 80, 100, 100);
@@ -84,22 +84,22 @@ public class Changer extends JFrame
         amount.setFont(new Font("Sans Serif", Font.BOLD, 30));
         p.add(amount);
         
-        HandlerClass handoraa = new HandlerClass();
-        CurrencyFrom.addActionListener(handoraa);
-        CurrencyTo.addActionListener(handoraa);
-        CONVERT.addActionListener(handoraa);
+        HandlerClass handler = new HandlerClass();
+        CurrencyFrom.addActionListener(handler);
+        CurrencyTo.addActionListener(handler);
+        CONVERT.addActionListener(handler);
     }
     
     private class HandlerClass implements ActionListener
     {
-        public void actionPerformed(ActionEvent ebento) 
+        public void actionPerformed(ActionEvent e) 
         {
             int currency1 = CurrencyFrom.getSelectedIndex();
             int currency2 = CurrencyTo.getSelectedIndex();
             
             double curRate = RATE[currency2] / RATE[currency1];
             
-            if (ebento.getSource() == CurrencyFrom || ebento.getSource() == CurrencyTo)
+            if (e.getSource() == CurrencyFrom || e.getSource() == CurrencyTo)
             {
 
                 BigDecimal bd = new BigDecimal(curRate).setScale(5, RoundingMode.HALF_EVEN);
@@ -107,13 +107,14 @@ public class Changer extends JFrame
 
                 rate.setText("" + curRate);
             }
-            else if (ebento.getSource() == CONVERT)
+            else if (e.getSource() == CONVERT)
             {
-                if (whole.getText().equals(""))
+                //If nothing has been put in to the text boxes, set it to 0.
+                if (whole.getText().trim().equals(""))
                 {
                     whole.setText("0");
                 }
-                if (decimal.getText().equals(""))
+                if (decimal.getText().trim().equals(""))
                 {
                     decimal.setText("00000");
                 }
@@ -134,11 +135,11 @@ public class Changer extends JFrame
                     
                     amount.setText("" + amountFinal);
                 }
-                catch (NumberFormatException eku)
+                catch (NumberFormatException x) //Opens a message window
                 {
                     JOptionPane.showMessageDialog(null, String.format("Error: Not a number. Please check input."));
                 }
-                catch (Exception eku)
+                catch (Exception x) //Clears the input boxes
                 {
                     whole.setText("");
                     decimal.setText("");
