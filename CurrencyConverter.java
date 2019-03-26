@@ -1,3 +1,5 @@
+//The purpose of this file is to open the window in which the converter is located
+
 package currencyconverter;
 
 import javax.swing.JFrame;
@@ -6,10 +8,10 @@ public class CurrencyConverter
 {
     public static void main(String[] args) 
     {
-        Changer kaireiyi = new Changer();
-        kaireiyi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        kaireiyi.setSize(700, 400);
-        kaireiyi.setVisible(true);
+        Changer changer = new Changer();
+        changer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        changer.setSize(700, 400);
+        changer.setVisible(true);
     }
     
 }
